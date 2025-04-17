@@ -1,0 +1,71 @@
+window.onload = async function() {
+
+    var gazedata = []; // 視線データを格納するための配列
+
+    //start the webgazer tracker
+    await webgazer.setRegression('ridge') /* currently must set regression and tracker */
+        //.setTracker('clmtrackr')
+        .setGazeListener(function(data, clock) {
+        if (data == null) {
+        return;
+        }
+          console.log(data.x); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+          console.log('timestampe is ' + clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+		  
+		  gazedata.push([data.x, data.y, clock]);
+		  
+		  // CSVに視線データを書き込む
+		  if (gazedata.length >= 50) {
+			var str = "X,Y,TimeStamp,ImageNo.\n";
+            var len=Object.keys(gazedata).length;
+            for(var i = 0; i<len; i++) {
+	              str += gazedata[i][0]+","+gazedata[i][1]+","+gazedata[i][2]+",";
+		      str += (Math.floor(gazedata[i][0]/380)+Math.floor(gazedata[i][1]/380)*3);
+				  str += '\r\n';
+             }
+
+             var blob =new Blob([str],{type:"text/csv"}); //配列に上記の文字列(str)を設定
+             var link =document.createElement('a');
+             link.href = URL.createObjectURL(blob);
+             link.download ="gazeData.csv";
+             link.click();
+			 
+			 gazedata.splice(0);
+		    }
+			
+        })
+        .saveDataAcrossSessions(true)
+        .begin();
+        webgazer.showVideoPreview(true) /* shows all video previews */
+            .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
+            .applyKalmanFilter(true); /* Kalman Filter defaults to on. Can be toggled by user. */
+
+    //Set up the webgazer video feedback.
+    var setup = function() {
+
+        //Set up the main canvas. The main canvas is used to calibrate the webgazer.
+        var canvas = document.getElementById("plotting_canvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.position = 'fixed';
+    };
+    setup();
+
+};
+
+// Set to true if you want to save the data even if you reload the page.
+window.saveDataAcrossSessions = true;
+
+window.onbeforeunload = function() {
+    webgazer.end();
+}
+
+/**
+ * Restart the calibration process by clearing the local storage and reseting the calibration point
+ */
+function Restart(){
+    document.getElementById("Accuracy").innerHTML = "<a>Not yet Calibrated</a>";
+    webgazer.clearData();
+    ClearCalibration();
+    PopUpInstruction();
+}
