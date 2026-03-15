@@ -403,15 +403,13 @@
             for (var r = 0; r < rows; r++) {
                 for (var c = 0; c < cols; c++) {
                     var cellData = board[r][c];
+                    var cellEl = getCellEl(r, c);
                     if (cellData.mine && !cellData.revealed) {
-                        var cellEl = getCellEl(r, c);
                         cellEl.classList.add('revealed');
                         if (!cellData.flagged) {
                             cellEl.textContent = '💣';
                         }
                     } else if (!cellData.mine && cellData.flagged) {
-                        // Wrong flag
-                        var cellEl = getCellEl(r, c);
                         cellEl.classList.add('revealed');
                         cellEl.textContent = '❌';
                     }
