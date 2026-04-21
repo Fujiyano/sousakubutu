@@ -1,0 +1,16 @@
+<body>
+  <form action="/access" method="post">
+    <p>Action</p>
+    <p><input type="text" name="action" size=40></p>
+    <p>Name</p>
+    <p><input type="text" name="name" size=40></p>
+    <p>Password</p>
+    <p><input type="text" name="password" size=40></p>
+    <p><input type="submit" value="Access"></p>
+  </form>
+  アクション：{{ action }}<br>
+  名前：{{ name }}<br>
+  パスワード：{{ password }}<br>
+  <br>
+  結果：{{ result }}
+</body>
