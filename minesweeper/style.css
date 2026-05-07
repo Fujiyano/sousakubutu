@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+}
+
+.game-container {
+    background: #c0c0c0;
+    border: 3px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+}
+
+.counter {
+    background: #000;
+    color: #f00;
+    font-family: 'Courier New', monospace;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 2px 6px;
+    min-width: 60px;
+    text-align: center;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+}
+
+.reset-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    cursor: pointer;
+    border: 3px solid;
+    border-color: #fff #808080 #808080 #fff;
+    background: #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.reset-btn:active {
+    border-color: #808080 #fff #fff #808080;
+}
+
+.board {
+    display: grid;
+    border: 3px solid;
+    border-color: #808080 #fff #fff #808080;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    background: #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cell.revealed {
+    border: 1px solid #808080;
+    cursor: default;
+}
+
+.cell.mine-exploded {
+    background: #f00;
+}
+
+.cell[data-number="1"] { color: #0000ff; }
+.cell[data-number="2"] { color: #008000; }
+.cell[data-number="3"] { color: #ff0000; }
+.cell[data-number="4"] { color: #000080; }
+.cell[data-number="5"] { color: #800000; }
+.cell[data-number="6"] { color: #008080; }
+.cell[data-number="7"] { color: #000000; }
+.cell[data-number="8"] { color: #808080; }
+
+.difficulty-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.difficulty-btn {
+    padding: 6px 14px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    background: #c0c0c0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.difficulty-btn:active,
+.difficulty-btn.active {
+    border-color: #808080 #fff #fff #808080;
+    background: #a0a0a0;
+}
+
+.message {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 24px;
+}

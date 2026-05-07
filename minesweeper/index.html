@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マインスイーパー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" data-difficulty="easy">初級 (9×9)</button>
+            <button class="difficulty-btn" data-difficulty="medium">中級 (16×16)</button>
+            <button class="difficulty-btn" data-difficulty="hard">上級 (30×16)</button>
+        </div>
+        <div class="header">
+            <div class="counter" id="mine-counter">010</div>
+            <button class="reset-btn" id="reset-btn">🙂</button>
+            <div class="counter" id="timer">000</div>
+        </div>
+        <div class="board" id="board"></div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
